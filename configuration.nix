@@ -5,10 +5,13 @@
 { config, pkgs, ... }:
 
 {
+###     
+# BELOW IS REMOVED TO WORK WITH REMOTE FILE IN /etc/nixos/configuration.nix WHICH POINTS TO THIS FILE
 #  imports =
 #    [ # Include the results of the hardware scan.
 #      ./hardware-configuration.nix
 #    ];
+###   
 
 # Trying flakes
 
@@ -65,6 +68,14 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  ###
+  # Added avahi services for printers
+  services.avahi.enable = true;
+  services.avahi.nssmdns = true;
+  # for a WiFi printer
+  services.avahi.openFirewall = true;
+  ###
+
 
   # Enable sound with pipewire.
   sound.enable = true;
