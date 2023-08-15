@@ -4,15 +4,17 @@
 
 { config, pkgs, ... }:
 
+
 {
 ###     
 # BELOW IS REMOVED TO WORK WITH REMOTE FILE IN /etc/nixos/configuration.nix WHICH POINTS TO THIS FILE
-#  imports =
-#    [ # Include the results of the hardware scan.
-#      ./hardware-configuration.nix
-#    ];
+ imports =
+   [ # Include the results of the hardware scan.
+     ./hardware-configuration.nix
+     <home-manager/nixos>
+#     ./home.nix
+   ];
 ###   
-
 # Trying flakes
 
 nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -103,11 +105,38 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     description = "kodak";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      firefox
-      kate
-      emacs29
+      # firefox
+      # kate
+      # emacs29
+      # neovim
     ];
   };
+
+  # home-manager.users."kodak" = { pkgs, ... }: {
+  #   home.packages = [ pkgs.atool pkgs.httpie ];
+  #   home.stateVersion = "22.11";
+  #   import ./home.nix;
+  # }
+home-manager.users.kodak = import ./home.nix;
+
+### 
+# Adding fonts 
+
+fonts.fonts = with pkgs; [
+#  noto-fonts
+#  noto-fonts-cjk
+#  noto-fonts-emoji
+#  liberation_ttf
+  fira-code
+  fira-code-symbols
+#  mplus-outline-fonts.githubRelease
+#  dina-font
+#  proggyfonts
+];
+
+
+###
+
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -115,13 +144,15 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+#  pkgs.home-manager 
+  vim
+  wget
   git
   appimage-run
+  curl
   ];
 
-
+  environment.variables.EDITOR = "emacs"; 
 nixpkgs.overlays = [
   (import (builtins.fetchTarball https://github.com/nix-community/emacs-overlay/archive/master.tar.gz))
 ];
