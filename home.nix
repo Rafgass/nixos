@@ -22,7 +22,11 @@
     pkgs.neovim
     pkgs.kate
     pkgs.firefox
-    
+    pkgs.ktorrent
+    pkgs.libreoffice-qt
+    pkgs.qalculate-qt
+    pkgs.neofetch
+    pkgs.nmap
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello

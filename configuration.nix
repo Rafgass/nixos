@@ -33,7 +33,11 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   networking.firewall = {
   enable = true;
   allowedTCPPorts = [ 80 443 8096 8920 ];
-  allowedUDPPorts = [ 1900 7359  ];
+  allowedUDPPorts = [ 1900 7359 6881 7881 8881];
+
+  # UDP 6881, 7881 and 8881 for ktorrent and bit torrents
+  # UDP 8096 fyrir jellyfin. 
+
 #  allowedUDPPortRanges = [
 #    { from = 4000; to = 4007; }
 #    { from = 8000; to = 8010; }
@@ -66,7 +70,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   };
 
   # Configure console keymap
-  console.keyMap = "is-latin1";
+  console.keyMap = "is-latin1"; 
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -112,17 +116,12 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     ];
   };
 
-  # home-manager.users."kodak" = { pkgs, ... }: {
-  #   home.packages = [ pkgs.atool pkgs.httpie ];
-  #   home.stateVersion = "22.11";
-  #   import ./home.nix;
-  # }
 home-manager.users.kodak = import ./home.nix;
 
 ### 
 # Adding fonts 
 
-fonts.fonts = with pkgs; [
+fonts.packages = with pkgs; [
 #  noto-fonts
 #  noto-fonts-cjk
 #  noto-fonts-emoji
@@ -150,6 +149,7 @@ fonts.fonts = with pkgs; [
   git
   appimage-run
   curl
+  btop
   ];
 
   environment.variables.EDITOR = "emacs"; 
@@ -199,7 +199,6 @@ programs.steam = {
 
 # Enable docker
 virtualisation.docker.enable = true;
-
 
 
 }
