@@ -27,6 +27,7 @@
     pkgs.qalculate-qt
     pkgs.neofetch
     pkgs.nmap
+    # pkgs.spotify
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello

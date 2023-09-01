@@ -150,6 +150,7 @@ fonts.packages = with pkgs; [
   appimage-run
   curl
   btop
+  python312
   ];
 
   environment.variables.EDITOR = "emacs"; 
