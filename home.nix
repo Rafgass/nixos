@@ -1,9 +1,12 @@
 { config, pkgs, ... }:
 
 {
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
-  home.username = "kodak";
+  # Home Manager needs a bit of information about you and the paths it should manage.
+
+    nixpkgs.config = {
+      allowUnfree = true;
+    };
+    home.username = "kodak";
   home.homeDirectory = "/home/kodak";
 
   # This value determines the Home Manager release that your configuration is
@@ -27,7 +30,7 @@
     pkgs.qalculate-qt
     pkgs.neofetch
     pkgs.nmap
-    # pkgs.spotify
+    pkgs.spotify
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
