@@ -151,6 +151,9 @@ fonts.packages = with pkgs; [
   curl
   btop
   python312
+  whois
+  wineWowPackages.stable
+  zsh
   ];
 
   environment.variables.EDITOR = "emacs"; 
