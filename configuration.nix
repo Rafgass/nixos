@@ -32,9 +32,18 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking.firewall = {
   enable = true;
-  allowedTCPPorts = [ 80 443 8096 8920 ];
-  allowedUDPPorts = [ 1900 7359 6881 7881 8881];
-
+  allowedTCPPorts = [ 80 443 8096 8920 25565];
+  allowedUDPPorts = [ 1900 7359 6881 7881 8881 25565];
+  allowedUDPPortRanges = [
+    {from = 4000; to = 8000;}
+    {from = 19132; to = 19133;}
+  ];
+  allowedTCPPortRanges =[
+    {from = 20000; to = 60000;}
+  ];
+  
+  # bætti við 20000 til 60000 tcp fyrir minecraft
+  # minecraft UDP 19132-19133 25565 + TCP 25565
   # UDP 6881, 7881 and 8881 for ktorrent and bit torrents
   # UDP 8096 fyrir jellyfin. 
 
@@ -109,10 +118,6 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     description = "kodak";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      # firefox
-      # kate
-      # emacs29
-      # neovim
     ];
   };
 
@@ -143,7 +148,6 @@ fonts.packages = with pkgs; [
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-#  pkgs.home-manager 
   vim
   wget
   git
@@ -173,7 +177,10 @@ nixpkgs.overlays = [
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+services.openssh = {
+  enable = true;
+  #  add more services.ssh settings here
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
