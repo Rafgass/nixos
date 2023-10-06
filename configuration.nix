@@ -34,15 +34,14 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   enable = true;
   allowedTCPPorts = [ 80 443 8096 8920 25565];
   allowedUDPPorts = [ 1900 7359 6881 7881 8881 25565];
-  allowedUDPPortRanges = [
-    {from = 4000; to = 8000;}
-    {from = 19132; to = 19133;}
-  ];
+   allowedUDPPortRanges = [
+     {from = 4000; to = 8000;} # þarf þetta fyrir minecraft
+     {from = 19132; to = 19133;}
+   ];
   allowedTCPPortRanges =[
-    {from = 20000; to = 60000;}
+    {from = 20000; to = 60000;} # bætti við 20000 til 60000 tcp fyrir minecraft
   ];
   
-  # bætti við 20000 til 60000 tcp fyrir minecraft
   # minecraft UDP 19132-19133 25565 + TCP 25565
   # UDP 6881, 7881 and 8881 for ktorrent and bit torrents
   # UDP 8096 fyrir jellyfin. 
