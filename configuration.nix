@@ -12,7 +12,6 @@
    [ # Include the results of the hardware scan.
      ./hardware-configuration.nix
      <home-manager/nixos>
-#     ./home.nix
    ];
 ###   
 # Trying flakes
@@ -32,24 +31,29 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking.firewall = {
   enable = true;
-  allowedTCPPorts = [ 80 443 8096 8920 25565];
-  allowedUDPPorts = [ 1900 7359 6881 7881 8881 25565];
-   allowedUDPPortRanges = [
+  allowedUDPPorts = [ 53 80 88 500 3544 4500 1900 7359 6881 7881 8881 25565];
+  allowedUDPPortRanges = [
      {from = 4000; to = 8000;} # þarf þetta fyrir minecraft
      {from = 19132; to = 19133;}
    ];
+
+  allowedTCPPorts = [ 53 80 443 3074 4096 8096 8920 25565];
   allowedTCPPortRanges =[
     {from = 20000; to = 60000;} # bætti við 20000 til 60000 tcp fyrir minecraft
   ];
   
-  # minecraft UDP 19132-19133 25565 + TCP 25565
-  # UDP 6881, 7881 and 8881 for ktorrent and bit torrents
-  # UDP 8096 fyrir jellyfin. 
+# minecraft UDP 19132-19133 25565 + TCP 25565
+# UDP 6881, 7881 and 8881 for ktorrent and bit torrents
+# UDP 8096 fyrir jellyfin. 
+# Ports 25565 UDP and TCP or others for client-to-client connection.  
+# Port 88 (UDP)
+# Port 3074 (UDP and TCP)
+# Port 53 (UDP and TCP)
+# Port 80 (TCP)
+# Port 500 (UDP)
+# Port 3544 (UDP)
+# Port 4500 (UDP)
 
-#  allowedUDPPortRanges = [
-#    { from = 4000; to = 4007; }
-#    { from = 8000; to = 8010; }
-#  ];
 };
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -116,8 +120,17 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     isNormalUser = true;
     description = "kodak";
     extraGroups = [ "networkmanager" "wheel" ];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF2skTJEMcfxQ0JX9W5Ex9oPLDE3oEMtyS8yuncDe2rK d@olafsson.ch"
+    ]; # Þetta er samt bara til að fjartengjast tölvunni, og nota þennan lykil til þess. 
     packages = with pkgs; [
     ];
+  };
+
+
+services.openssh = {
+  enable = true;
+  #  add more services.ssh settings here
   };
 
 home-manager.users.kodak = import ./home.nix;
@@ -176,11 +189,6 @@ nixpkgs.overlays = [
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-services.openssh = {
-  enable = true;
-  #  add more services.ssh settings here
-  };
-
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
