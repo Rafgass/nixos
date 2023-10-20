@@ -37,11 +37,13 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
      {from = 19132; to = 19133;}
    ];
 
-  allowedTCPPorts = [ 53 80 443 3074 4096 8096 8920 25565];
+  allowedTCPPorts = [ 53 80 443 3074 4096 8096 8123 8920 25565];
   allowedTCPPortRanges =[
     {from = 20000; to = 60000;} # bætti við 20000 til 60000 tcp fyrir minecraft
   ];
-  
+
+
+  # Port 8123 (TCP) fyrir home assistant
 # minecraft UDP 19132-19133 25565 + TCP 25565
 # UDP 6881, 7881 and 8881 for ktorrent and bit torrents
 # UDP 8096 fyrir jellyfin. 
@@ -176,7 +178,8 @@ fonts.packages = with pkgs; [
   python312
   whois
   wineWowPackages.stable
-  zsh
+  dbus-broker # kannski þarf ekki 
+  bluez # ekki þetta heldur, þessi tvö eru fyrir home-assistant
   ];
 
   environment.variables.EDITOR = "emacs"; 
