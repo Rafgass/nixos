@@ -81,6 +81,13 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     xkbVariant = "";
   };
 
+
+  # add bluetooth
+
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  }; 
   # Configure console keymap
   console.keyMap = "is-latin1"; 
 
