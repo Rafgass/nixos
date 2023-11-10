@@ -36,6 +36,7 @@
     pkgs.nmap
     pkgs.spotify
     pkgs.vlc
+#    pkgs.blender
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello

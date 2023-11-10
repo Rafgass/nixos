@@ -175,11 +175,18 @@ fonts.packages = with pkgs; [
   appimage-run
   curl
   btop
-  python312
+  python311
   whois
   wineWowPackages.stable
-  dbus-broker # kannski þarf ekki 
-  bluez # ekki þetta heldur, þessi tvö eru fyrir home-assistant
+#  dbus-broker # kannski þarf ekki 
+#  bluez # ekki þetta heldur, þessi tvö eru fyrir home-assistant
+  unzip
+  pkgs.ffmpeg # fyrir jellyfin
+  linssid
+  libsForQt5.breeze-gtk     # for KDE styles in firefox
+  libsForQt5.kde-gtk-config
+  xdg-desktop-portal
+  libsForQt5.xdg-desktop-portal-kde # for KDE styles in firefox
   ];
 
   environment.variables.EDITOR = "emacs"; 
