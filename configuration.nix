@@ -70,6 +70,8 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
+  i18n.extraLocaleSettings.LC_MEASUREMENT = "fr_CH.UTF-8";
+  
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
