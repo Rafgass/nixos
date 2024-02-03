@@ -23,7 +23,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest; 
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "nixos-desk"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   
 
@@ -100,7 +100,7 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   ###
   # Added avahi services for printers
   services.avahi.enable = true;
-  services.avahi.nssmdns = true;
+  services.avahi.nssmdns4 = true;
   # for a WiFi printer
   services.avahi.openFirewall = true;
   ###
@@ -170,6 +170,10 @@ fonts.packages = with pkgs; [
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+
+
+
+
   environment.systemPackages = with pkgs; [
   vim
   wget
@@ -177,7 +181,8 @@ fonts.packages = with pkgs; [
   appimage-run
   curl
   btop
-  python311
+  (python311.withPackages(ps: with ps; [matplotlib]))
+  python311Packages.python-lsp-server
   whois
   wineWowPackages.stable
 #  dbus-broker # kannski þarf ekki 
@@ -191,7 +196,8 @@ fonts.packages = with pkgs; [
   libsForQt5.xdg-desktop-portal-kde # for KDE styles in firefox
   tree
   pciutils
-  
+  lm_sensors
+  #emacs29
   ];
 
   environment.variables.EDITOR = "emacs"; 

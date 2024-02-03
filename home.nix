@@ -4,10 +4,10 @@
   # Home Manager needs a bit of information about you and the paths it should manage.
 
 
-    nixpkgs.config = {
-      allowUnfree = true;
-    };
-    home.username = "kodak";
+  nixpkgs.config = {
+    allowUnfree = true;
+  };
+  home.username = "kodak";
   home.homeDirectory = "/home/kodak";
 
   # This value determines the Home Manager release that your configuration is
@@ -18,25 +18,26 @@
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
   home.stateVersion = "22.11"; # Please read the comment before changing.
-
-
-
   
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
-    pkgs.emacs29
-    pkgs.neovim
-    pkgs.kate
-    pkgs.firefox
-    pkgs.ktorrent
-    pkgs.libreoffice-qt
-    pkgs.qalculate-qt
-    pkgs.neofetch
-    pkgs.nmap
-    pkgs.spotify
-    pkgs.vlc
-#    pkgs.blender
+  home.packages = with pkgs; [
+    #emacs29
+    neovim
+    kate
+    firefox
+    ktorrent
+    libreoffice-qt
+    qalculate-qt
+    neofetch
+    nmap
+    spotify
+    vlc
+    gimp
+    imagemagickBig
+    haruna
+    chromium
+    mc # midnight commander
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -56,6 +57,13 @@
 
   ];
 
+  programs.emacs = {
+  enable = true ;
+  package = pkgs.emacs29;
+  };  
+
+
+  
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
