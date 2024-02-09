@@ -187,10 +187,10 @@ fonts.packages = with pkgs; [
   #emacs29
   ];
 
-  environment.variables.EDITOR = "emacs"; 
-nixpkgs.overlays = [
-  (import (builtins.fetchTarball https://github.com/nix-community/emacs-overlay/archive/master.tar.gz))
-];
+#   environment.variables.EDITOR = "emacs"; 
+# nixpkgs.overlays = [
+#   (import (builtins.fetchTarball https://github.com/nix-community/emacs-overlay/archive/master.tar.gz))
+# ];
 
 
   # Some programs need SUID wrappers, can be configured further or are
