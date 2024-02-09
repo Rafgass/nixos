@@ -1,0 +1,7 @@
+{
+  description = "My first flake";
+
+  inputs = {}; # some git repo, nxpkgs for example
+
+  outputs = {}; # my built system  
+}
