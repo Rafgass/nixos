@@ -188,8 +188,6 @@ fonts.packages = with pkgs; [
     python-lsp-server]))
   whois
   wineWowPackages.stable
-#  dbus-broker # kannski þarf ekki 
-#  bluez # ekki þetta heldur, þessi tvö eru fyrir home-assistant
   unzip
   pkgs.ffmpeg # fyrir jellyfin
   linssid
@@ -200,7 +198,6 @@ fonts.packages = with pkgs; [
   tree
   pciutils
   lm_sensors
-  #emacs29
   ];
 
   environment.variables.EDITOR = "emacs"; 
