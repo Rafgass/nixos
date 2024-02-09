@@ -143,7 +143,7 @@ services.openssh = {
   #  add more services.ssh settings here
   };
 
-home-manager.users.kodak = import ./home.nix;
+# home-manager.users.kodak = import ./home.nix;
 
 ### 
 # Adding fonts 
@@ -154,7 +154,7 @@ fonts.packages = with pkgs; [
 ];
 
 
-  # Allow unfree packages
+  # Allow unfree packag
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
@@ -184,7 +184,6 @@ fonts.packages = with pkgs; [
   tree
   pciutils
   lm_sensors
-  #emacs29
   ];
 
 #   environment.variables.EDITOR = "emacs"; 
