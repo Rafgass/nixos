@@ -11,11 +11,9 @@
  imports =
    [ # Include the results of the hardware scan.
      ./hardware-configuration.nix
-     #<home-manager/nixos>
    ];
 ###   
 # Trying flakes
-};
 
 nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -199,6 +197,7 @@ fonts.packages = with pkgs; [
   tree
   pciutils
   lm_sensors
+  #emacs29
   ];
 
   environment.variables.EDITOR = "emacs"; 

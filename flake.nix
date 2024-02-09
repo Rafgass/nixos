@@ -10,7 +10,7 @@
     # }
   }; # some git repo, nxpkgs for example
 
-  outputs = {self, nixpkgs, home-manager,  ... }: # The "let" is a way to pass binding into other functions, so here we define "lib" to be used below
+  outputs = inputs@{self, nixpkgs, home-manager,  ... }: # The "let" is a way to pass binding into other functions, so here we define "lib" to be used below
     let
       lib = nixpkgs.lib; 
     in {
