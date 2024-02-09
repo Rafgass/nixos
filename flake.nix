@@ -11,11 +11,11 @@
   }; # some git repo, nxpkgs for example
 
   outputs = inputs@{self, nixpkgs, home-manager,  ... }: # The "let" is a way to pass binding into other functions, so here we define "lib" to be used below
-    let
-      lib = nixpkgs.lib; 
-    in {
+    # let
+    #   lib = nixpkgs.lib; 
+    # in {
     nixosConfigurations = {
-      nixos-desk = lib.nixosSystem { # "lib" is defined above
+      nixos-desk = nixpkgs.lib.nixosSystem { # "lib" is defined above
         system = "x86_64-linux";
         modules = [
           ./configuration.nix
