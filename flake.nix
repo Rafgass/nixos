@@ -14,6 +14,7 @@
     # let
     #   lib = nixpkgs.lib; 
     # in {
+    {
     nixosConfigurations = {
       nixos-desk = nixpkgs.lib.nixosSystem { # "lib" is defined above
         system = "x86_64-linux";
