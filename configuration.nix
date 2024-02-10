@@ -170,6 +170,7 @@ fonts.packages = with pkgs; [
   (python311.withPackages(ps: with ps; [
     matplotlib
     pandas
+    numpy
     scipy
     python-lsp-server]))
   whois
