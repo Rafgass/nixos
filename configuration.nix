@@ -169,6 +169,7 @@ fonts.packages = with pkgs; [
   btop
   (python311.withPackages(ps: with ps; [
     matplotlib
+    jupyter
     pandas
     numpy
     scipy
