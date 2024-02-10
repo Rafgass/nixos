@@ -168,6 +168,7 @@ fonts.packages = with pkgs; [
   curl
   btop
   (python311.withPackages(ps: with ps; [
+    basemap
     matplotlib
     jupyter
     pandas
