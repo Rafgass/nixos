@@ -174,6 +174,8 @@ fonts.packages = with pkgs; [
     pandas
     numpy
     scipy
+    pydy # python dynamics
+    pybullet # physics engine
     python-lsp-server]))
   whois
   wineWowPackages.stable
