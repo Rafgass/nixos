@@ -176,7 +176,8 @@ fonts.packages = with pkgs; [
     scipy
     pydy # python dynamics
     pybullet # physics engine
-    python-lsp-server]))
+    python-lsp-server
+    pygame]))
   whois
   wineWowPackages.stable
   unzip
