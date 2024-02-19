@@ -179,7 +179,7 @@ fonts.packages = with pkgs; [
     python-lsp-server
     pygame]))
   whois
-  wineWowPackages.staging
+  wine-staging
   winetricks
   unzip
   pkgs.ffmpeg # fyrir jellyfin
