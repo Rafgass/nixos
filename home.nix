@@ -53,12 +53,13 @@
   shellAliases = {
     ll = "ls -l";
     la = "ls -a";
+    
   };
      oh-my-zsh = {
        enable = true;
        plugins = ["git"];
        theme = "robbyrussell";
-  };
+     };
   };
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
