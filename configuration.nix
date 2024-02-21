@@ -136,8 +136,9 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
     packages = with pkgs; [
     ];
   };
-
-
+  # set Zsh as default
+programs.zsh.enable = true;
+users.defaultUserShell = pkgs.zsh;
 services.openssh = {
   enable = true;
   #  add more services.ssh settings here

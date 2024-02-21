@@ -36,6 +36,10 @@
     rpi-imager
     sops
     nerdfonts
+    meslo-lgs-nf # for powerlevel10k
+    zsh-powerlevel10k
+    # zsh
+    # oh-my-zsh
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
     # # environment:
@@ -44,7 +48,18 @@
     # '')
 
   ];
-  
+  programs.zsh = {
+  enable = true;
+  shellAliases = {
+    ll = "ls -l";
+    la = "ls -a";
+  };
+     oh-my-zsh = {
+       enable = true;
+       plugins = ["git"];
+       theme = "robbyrussell";
+  };
+  };
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
