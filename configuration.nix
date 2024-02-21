@@ -179,7 +179,7 @@ fonts.packages = with pkgs; [
     python-lsp-server
     pygame]))
   whois
-  wine-staging
+  wine-staging # needed to delete .wine folder
   winetricks
   unzip
   pkgs.ffmpeg # fyrir jellyfin
