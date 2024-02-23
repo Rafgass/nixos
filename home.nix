@@ -36,10 +36,7 @@
     rpi-imager
     sops
     nerdfonts
-    meslo-lgs-nf # for powerlevel10k
-    zsh-powerlevel10k
-    # zsh
-    # oh-my-zsh
+    freecad
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
     # # environment:
@@ -58,7 +55,7 @@
      oh-my-zsh = {
        enable = true;
        plugins = ["git"];
-       theme = "robbyrussell";
+       theme = "gnzh";
      };
   };
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
