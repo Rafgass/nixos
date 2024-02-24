@@ -45,6 +45,17 @@
     # '')
 
   ];
+
+
+
+
+  # programs.vscode = {
+  #   enable = true;
+  #   package = pkgs.vscode.fhs;   # VScode with own filesystem to install extensions in-app. For mindstorms for Steinar
+  # };
+
+
+
   programs.zsh = {
   enable = true;
   shellAliases = {
