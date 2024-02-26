@@ -15,7 +15,22 @@
 ###   
 # Trying flakes
 
-nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+
+ ## Adding VIA and QMK support to edit keyboard settings 
+
+  hardware.keyboard.qmk.enable = true; 
+
+
+  # udev rules to give R/W access keyboard (which came to /dev/hidraw2)
+  services.udev.packages = with pkgs; [ via vial ];
+  services.udev.extraRules = ''
+  KERNEL=="hidraw2", MODE="0666""
+
+  '';
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -192,6 +207,7 @@ fonts.packages = with pkgs; [
   tree
   pciutils
   lm_sensors
+  via
   ];
 
 #   environment.variables.EDITOR = "emacs"; 
