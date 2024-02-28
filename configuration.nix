@@ -11,6 +11,9 @@
  imports =
    [ # Include the results of the hardware scan.
      ./hardware-configuration.nix
+
+     ./packages.nix
+     ./python-packages.nix
    ];
 ###   
 # Trying flakes
@@ -175,40 +178,6 @@ fonts.packages = with pkgs; [
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-
-  environment.systemPackages = with pkgs; [
-  vim
-  wget
-  git
-  appimage-run
-  curl
-  btop
-  (python311.withPackages(ps: with ps; [
-    basemap
-    matplotlib
-    jupyter
-    pandas
-    numpy
-    scipy
-    pydy # python dynamics
-    pybullet # physics engine
-    python-lsp-server
-    pygame]))
-  whois
-  wine-staging # needed to delete .wine folder
-  winetricks
-  unzip
-  pkgs.ffmpeg # fyrir jellyfin
-  linssid
-  libsForQt5.breeze-gtk     # for KDE styles in firefox
-  libsForQt5.kde-gtk-config
-  xdg-desktop-portal
-  libsForQt5.xdg-desktop-portal-kde # for KDE styles in firefox
-  tree
-  pciutils
-  lm_sensors
-  via
-  ];
 
 #   environment.variables.EDITOR = "emacs"; 
 # nixpkgs.overlays = [
