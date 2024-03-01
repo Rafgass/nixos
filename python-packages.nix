@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
-    (python311.withPackages (ps:
+    (python3.withPackages (ps:
       with ps; [
         basemap
         matplotlib

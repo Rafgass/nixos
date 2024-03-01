@@ -117,7 +117,7 @@
   ###
   # Added avahi services for printers
   services.avahi.enable = true;
-  services.avahi.nssmdns4 = true;
+  services.avahi.nssmdns = true;
   # for a WiFi printer
   services.avahi.openFirewall = true;
   ###
