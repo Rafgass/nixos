@@ -224,7 +224,7 @@ programs.steam = {
 # Enable docker
 virtualisation = {
   docker.enable = true;
-  docker.liveRestore = false;
+  docker.liveRestore = false; # to fix 90s delay on "s6-svcan" on power-off or reboot
 }; 
 
 nixpkgs.config.packageOverrides = pkgs: {
