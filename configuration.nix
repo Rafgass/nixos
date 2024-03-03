@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-stable, ... }:
 
 
 {
@@ -11,7 +11,6 @@
  imports =
    [ # Include the results of the hardware scan.
      ./hardware-configuration.nix
-
      ./packages.nix
      ./python-packages.nix
    ];
@@ -94,7 +93,7 @@
 
   # Enable the KDE Plasma Desktop Environment.
   services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -117,7 +116,7 @@
   ###
   # Added avahi services for printers
   services.avahi.enable = true;
-  services.avahi.nssmdns = true;
+  services.avahi.nssmdns4 = true;
   # for a WiFi printer
   services.avahi.openFirewall = true;
   ###
@@ -223,7 +222,10 @@ programs.steam = {
 		 };
 
 # Enable docker
-virtualisation.docker.enable = true;
+virtualisation = {
+  docker.enable = true;
+  docker.liveRestore = false;
+}; 
 
 nixpkgs.config.packageOverrides = pkgs: {
     vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };

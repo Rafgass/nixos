@@ -4,23 +4,37 @@
   inputs = {
     # nixpkgs = {
     #  url = "github:NixOS/nixpkgs/nixos-unstable"; or /nixpkgs/nixos-23.11 or whatever release
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11"; # does the same as above code, can ignore github: blah blah because nix knows its own repo
+
+
+    # Use nixpkgs.url for UNSTABLE
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # does the same as above code, can ignore github: blah blah because nix knows its own repo
+
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
     # unstable.url = "github:nixos/nixpkgs/nixos-unstable"; # for later! 
     # home-manager.url = "github:nix-community/home-manager/nixos-23.11"; # where 23.11 would change to 24.05 on next stable
-    home-manager.url = "github:nix-community/home-manager/release-23.11"; # master is the unstable branch
+    home-manager.url = "github:nix-community/home-manager/master"; # master is the unstable branch
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     # }
   }; # some git repo, nxpkgs for example
 
-  outputs = inputs@{self, nixpkgs, home-manager,  ... }:
-    # The "let" is a way to pass binding into other functions, so here we define "lib" to be used below
-    # let
-    #   lib = nixpkgs.lib; 
-    # in {
+  outputs = inputs@{
+    self,
+    nixpkgs,
+    home-manager,
+    nixpkgs-stable,
+    ... }:
     {
     nixosConfigurations = {
-      nixos-desk = nixpkgs.lib.nixosSystem { # "lib" is defined above
+      nixos-desk = nixpkgs.lib.nixosSystem  rec { # "lib" is defined above
         system = "x86_64-linux";
+        specialArgs = {
+          # To use nixpkgs-stable in my modules
+          pkgs-stable = import nixpkgs-stable {
+            system = system;
+            # lets add unfree just in case
+            config.allowUnfree = true;
+          };
+        };
         modules = [
           ./configuration.nix
           home-manager.nixosModules.home-manager
