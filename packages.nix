@@ -20,5 +20,6 @@
     pciutils
     lm_sensors
     via
+    cura
   ];
 }
