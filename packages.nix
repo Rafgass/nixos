@@ -21,5 +21,6 @@
     lm_sensors
     via
     cura
+    usbutils
   ];
 }

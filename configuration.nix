@@ -27,10 +27,10 @@
   # udev rules to give R/W access keyboard (which came to /dev/hidraw2)
   services.udev.packages = with pkgs; [ via vial ];
   services.udev.extraRules = ''
-  KERNEL=="hidraw2", MODE="0666""
-
+  KERNEL=="hidraw2", MODE="0666"
+   SUBSYSTEMS=="usb", ATTRS{idVendor}=="2341", ATTRS{idProduct}=="0042", MODE="0660", TAG+="uaccess"
   '';
-
+  # Above USB udev rule is for yanns ultimaker original + 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 
