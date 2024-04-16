@@ -19,11 +19,11 @@
   home.packages = with pkgs; [
     emacs29
     neovim
-    kate
+    # kate
     firefox
-    ktorrent
+    # ktorrent
     libreoffice-qt
-    qalculate-qt
+    # qalculate-qt
     neofetch
     nmap
     spotify
@@ -36,7 +36,9 @@
     rpi-imager
     sops
     nerdfonts
-    freecad
+    # freecad
+    fragments
+    transmission # gnome torrents
     via # to configure the keyboard
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your

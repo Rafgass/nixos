@@ -22,5 +22,6 @@
     via
     cura
     usbutils
+    nextcloud-client
   ];
 }

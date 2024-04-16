@@ -15,14 +15,10 @@
      ./python-packages.nix
    ];
 ###   
-# Trying flakes
-
-
 
  ## Adding VIA and QMK support to edit keyboard settings 
 
   hardware.keyboard.qmk.enable = true; 
-
 
   # udev rules to give R/W access keyboard (which came to /dev/hidraw2)
   services.udev.packages = with pkgs; [ via vial ];
@@ -33,7 +29,6 @@
   # Above USB udev rule is for yanns ultimaker original + 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -41,23 +36,20 @@
 
   networking.hostName = "nixos-desk"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  
-
   # Enable firewall and open ports for jellyfin
 
   networking.firewall = {
   enable = true;
-  allowedUDPPorts = [ 53 80 88 500 3544 4500 1900 7359 6881 7881 8881 25565];
+  allowedUDPPorts = [ 53 80 88 500 3544 4500 1900 7359 6881 7881 8881 25565 51413];
   allowedUDPPortRanges = [
      {from = 4000; to = 8000;} # þarf þetta fyrir minecraft
      {from = 19132; to = 19133;}
    ];
-
-  allowedTCPPorts = [ 53 80 443 3074 4096 8096 8123 8920 25565];
+ 
+  allowedTCPPorts = [ 53 80 443 3074 4096 8096 8123 8920 25565 51413];
   allowedTCPPortRanges =[
     {from = 20000; to = 60000;} # bætti við 20000 til 60000 tcp fyrir minecraft
   ];
-
 
   # Port 8123 (TCP) fyrir home assistant
 # minecraft UDP 19132-19133 25565 + TCP 25565
@@ -71,6 +63,7 @@
 # Port 500 (UDP)
 # Port 3544 (UDP)
 # Port 4500 (UDP)
+# Port 51413 fyrir Torrents
 
 };
   # Configure network proxy if necessary
@@ -87,13 +80,31 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings.LC_MEASUREMENT = "fr_CH.UTF-8";
+
+  # trying to mount kdrive on boot with davfs2 (webdav)
+#  services.davfs2.enable = true; 
+#  services.autofs = {
+#  	enable = true; 
+	#autoMaster = let
+	#mapConf = pkgs.writeText "auto" ''
+	#	kdrive -fstype=davfs, conf=/etc/davfs2/secrets, uid1000 :https://187467.connect.kdrive.infomaniak.com
+	#	'';
+	#in ''
+	#/home/Documents/kdrive-cloud file:${mapConf}
+	#''; 
+	#};
+
   
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.displayManager.defaultSession = "plasmax11";
+  # services.xserver.displayManager.defaultSession = "plasmax11";
+  # Testing Gnome
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
   # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true; 
+  # services.xserver.displayManager.sddm.enable = true;
+  # services.desktopManager.plasma6.enable = true; 
+  
   # Configure keymap in X11
   services.xserver = {
     xkb.layout = "is";
